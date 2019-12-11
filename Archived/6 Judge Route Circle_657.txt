@@ -1,0 +1,25 @@
+class Solution {
+public:
+    bool judgeCircle(string moves) {
+        int table1[26] = {0};
+        table1['R'-'A'] = 1;
+        table1['L'-'A'] = -1;
+        int table2[26] = {0};
+        table2['U'-'A'] = 1;
+        table2['D'-'A'] = -1;
+        int direction[2] = {0};
+        for(auto step : moves)
+        {
+            direction[0] += table1[step-'A'];
+            direction[1] += table2[step-'A'];
+        }
+        if(!direction[0] && !direction[1])
+        {
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
+    }
+};

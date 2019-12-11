@@ -1,0 +1,16 @@
+class Solution {
+public:
+    vector<vector<int>> flipAndInvertImage(vector<vector<int>>& A) {
+        for(auto &raw : A){
+            reverse(raw.begin(), raw.end());
+        }
+        for(auto &raw : A)
+        {
+            for(auto &pixel : raw)
+            {
+                pixel = 1-pixel;
+            }
+        }
+        return A;
+    }
+};

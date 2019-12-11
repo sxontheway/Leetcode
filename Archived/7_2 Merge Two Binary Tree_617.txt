@@ -1,0 +1,43 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* mergeTrees(TreeNode* t1, TreeNode* t2){
+        if(!t1 && t2)
+            return t2;
+        if(t1 && !t2)
+            return t1;
+        if(!t1 && !t2)
+            return NULL;
+        
+        queue<TreeNode *> q1, q2;
+        q1.push(t1);
+        q2.push(t2);
+
+        while(!q1.empty() && !q2.empty()){
+            TreeNode *temp1 = q1.front();
+            q1.pop();
+            TreeNode *temp2 = q2.front();
+            q2.pop();
+            temp1->val += temp2->val;
+            
+            if(!temp1->left && temp2->left)
+                temp1->left = temp2->left;
+            else if(temp1->left && temp2->left)
+                q1.push(temp1->left), q2.push(temp2->left);
+                
+            if(!temp1->right && temp2->right)
+                temp1->right = temp2->right;
+            else if(temp1->right && temp2->right)
+                q1.push(temp1->right), q2.push(temp2->right);
+        }
+        return t1;
+    }
+};

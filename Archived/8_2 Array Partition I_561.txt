@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int arrayPairSum(vector<int>& nums) {
+        int length = nums.size();
+        int hash[20001] = {0};
+        vector<int> new_nums(length);
+        for(auto i:nums)
+        {
+            hash[i+10000]++;
+        }
+        
+        int k=0;
+        for(int i=0; i<20001; i++)
+        {
+            if(hash[i] > 0)
+            {
+                for(int j=k; j<k+hash[i]; j++)
+                {
+                    new_nums[j] = i-10000;
+                }
+                k += hash[i];
+            }
+        }
+        
+        int sum = 0;
+        for(auto i = new_nums.begin(); i != new_nums.end(); i=i+2)
+        {
+            sum += *i;
+        }
+        return sum;
+    }
+};

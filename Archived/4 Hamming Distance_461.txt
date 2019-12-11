@@ -1,0 +1,51 @@
+class Solution {
+public:
+    int hammingDistance(int x, int y) 
+    {
+        string bin_x = binary(x);
+        string bin_y = binary(y);
+        return distance(bin_x, bin_y);
+    }
+    
+    string binary(int x)
+    {
+        string bin_x="";
+        while(x>=1)
+        {
+            bin_x.append(to_string(x%2));
+            x=x/2;
+        }
+        return bin_x;
+    }
+    
+    int distance(string bin_x, string bin_y)
+    {
+        int length_min = min(bin_x.size(), bin_y.size());
+        int length_max = max(bin_x.size(), bin_y.size());
+        if(bin_x.size() == length_min)
+        {
+            for(int i=0; i<length_max-length_min; i++)
+            {
+                bin_x.append("0");
+            }
+        }
+        else
+        {
+            for(int i=0; i<length_max-length_min; i++)
+            {
+                bin_y.append("0");
+            }
+        }
+        
+        int count = 0;
+        for (int i=0; i < length_max; i++)
+        {
+            if(bin_x[i] != bin_y[i])
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+    
+};

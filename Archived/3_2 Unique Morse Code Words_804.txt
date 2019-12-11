@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int uniqueMorseRepresentations(vector<string>& words) 
+    {
+        unordered_set<string> hashtable;
+        for(auto word: words)
+        {
+            string morse = "";
+            for(auto letter:word)
+            {
+                morse.append(table[letter-'a']);
+            }
+            hashtable.insert(morse);
+        }
+        return hashtable.size();
+    }
+    
+
+private:
+    string table[26]={".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--",\
+               "-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."}; 
+    
+};

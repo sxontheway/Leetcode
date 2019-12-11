@@ -1,0 +1,12 @@
+class Solution {
+public:
+    string toLowerCase(string str) {
+        int size = str.size();
+        for (int i=0; i<size; i++)
+        {
+            if (str[i]<='Z' && str[i]>='A')
+                str[i] = str[i]+32;
+        }
+        return str;
+    }
+};

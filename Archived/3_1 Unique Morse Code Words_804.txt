@@ -1,0 +1,44 @@
+class Solution {
+public:  
+    int uniqueMorseRepresentations(vector<string>& words) 
+    {
+        vector<string> morses;
+        for(auto word : words)
+        {
+            string morse = "";
+            for(auto letter : word)
+            {
+                morse.append(table[letter-'a']);
+            }
+            morses.push_back(morse);
+        }
+        return get_unique_number(morses);
+    }
+        
+    int get_unique_number(vector<string> morses)
+    {
+        vector<string> hash;
+        for(auto s : morses){
+            int flag = 0;
+            for(auto it : hash)
+            {
+                if(it == s) 
+                {
+                    flag=1;
+                    break;
+                }
+            }      
+            if (!flag)
+            {
+                hash.push_back(s); 
+            }
+        }
+        return hash.size();
+    }
+    
+
+private:
+    string table[26]={".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--",\
+               "-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."}; 
+    
+};
