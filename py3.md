@@ -255,7 +255,40 @@ https://zhuanlan.zhihu.com/p/46187444
 <br><br><br>
 
 # Python的其他特性
-## itertools模块
+## functools, itertools模块
+* map, reduce  
+    python3中, reduce() 函数被移除, 需要从functools中import
+    ```python
+    from functools import reduce
+    arr = [1, 2, 3, 4, 5]
+    reduce(lambda x, y : x+y, arr)
+
+    # 输出 15
+    ```
+
+    ```python
+    def f(x):
+        return x * x
+
+    r = map(f, [1, 2, 3, 4, 5, 6, 7, 8, 9])
+    list(r)
+
+    # 输出 [1, 4, 9, 16, 25, 36, 49, 64, 81]
+    ```
+    自己写一个 str2int() 函数：
+    ```python
+    from functools import reduce
+
+    DIGITS = {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9}
+
+    def char2num(s):
+        return DIGITS[s]
+
+    def str2int(s):
+        return reduce(lambda x, y: x * 10 + y, map(char2num, s))
+    ```
+
+
 ---
 
 ## zip 和 unpacking (\*, **)
@@ -316,7 +349,7 @@ https://zhuanlan.zhihu.com/p/46187444
 常见的一些正则项目:  
 ^：匹配开头  
 $：匹配结尾  
-.:匹配任意单个字符  
+.：匹配任意单个字符  
 ?：匹配前一个字符的0或1次（即可有可无）   
 *：匹配前一个字符0到无限次  
 +：匹配前一个字符1到无限次  
